@@ -1,0 +1,74 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+:root {
+  --ink: #{$ink};
+  --panel: #{$panel};
+  --panel-2: #{$panel-2};
+  --panel-3: #{$panel-3};
+  --line: #{$line};
+  --line-soft: #{$line-soft};
+  --text: #{$text};
+  --muted: #{$muted};
+  --muted-2: #{$muted-2};
+  --accent: #{$accent}; /* primary / brand */
+  --accent-dim: #{$accent-dim};
+  @each $name, $color in $type-colors {
+    --t-#{$name}: #{$color};
+  }
+  --accent-hover: #{$accent-hover};
+  --danger: #{$danger};
+  --radius-sm: #{$radius-sm};
+  --radius: #{$radius};
+  --radius-lg: #{$radius-lg};
+  --shadow-panel: #{$shadow-panel};
+  --focus-ring: #{$focus-ring};
+  --mono: #{$mono};
+  --ui: #{$ui};
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--ui);
+  font-size: 13.5px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+// thin scrollbars everywhere (Firefox); WebKit rules live with each scroller
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+@include reduced-motion {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

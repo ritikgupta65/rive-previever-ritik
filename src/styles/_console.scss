@@ -1,0 +1,89 @@
+@use "mixins" as *;
+
+.console {
+  flex: 0 0 auto;
+  border-top: 1px solid var(--line);
+  background: var(--panel);
+  display: flex;
+  flex-direction: column;
+  max-height: 190px;
+}
+
+.console-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--line-soft);
+
+  h2 {
+    margin: 0;
+    @include group-label;
+    white-space: nowrap;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+}
+
+// Kept as in the original tool: the generic input[type="text"] rule has higher
+// specificity and wins, so this filter field stretches across the console header.
+.filter-in {
+  width: 150px;
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+#log {
+  overflow-y: auto;
+  flex: 1;
+  padding: 6px 0;
+  @include mono(11.5px);
+
+  @include thin-scrollbar;
+}
+
+.logline {
+  display: flex;
+  gap: 12px;
+  padding: 2px 16px;
+  white-space: pre-wrap;
+  word-break: break-word;
+
+  .ts {
+    color: var(--muted-2);
+    flex: 0 0 auto;
+  }
+
+  .tag {
+    flex: 0 0 auto;
+    font-weight: 600;
+  }
+
+  .msg {
+    color: var(--text);
+  }
+
+  $tag-colors: (
+    state: var(--accent),
+    event: var(--t-enum),
+    trigger: var(--t-trigger),
+    sys: var(--muted),
+    err: var(--danger),
+  );
+
+  @each $kind, $color in $tag-colors {
+    &.#{$kind} .tag {
+      color: $color;
+    }
+  }
+}
+
+.log-empty {
+  color: var(--muted-2);
+  padding: 12px 16px;
+  font-style: italic;
+  font-family: var(--ui);
+  font-size: 12.5px;
+}

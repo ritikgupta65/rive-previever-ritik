@@ -1,0 +1,10 @@
+// Figtree is self-hosted from /public/fonts (previously inlined as base64).
+@each $weight in 400, 500, 600, 700, 800 {
+  @font-face {
+    font-family: "Figtree";
+    font-weight: $weight;
+    font-style: normal;
+    font-display: swap;
+    src: url("/fonts/figtree-#{$weight}.woff2") format("woff2");
+  }
+}

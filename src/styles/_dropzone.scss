@@ -1,0 +1,308 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.dropzone {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  background: var(--ink);
+  transition: background-color $dur-fast;
+  overflow: auto;
+  padding: 24px 24px 32px;
+  @include thin-scrollbar;
+
+  &.hidden {
+    display: none;
+  }
+
+  &.drag {
+    .drop-hero {
+      border-color: var(--accent);
+      background: #{accent-a(0.06)};
+    }
+
+    .dz-ring {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: scale(1.04);
+    }
+  }
+}
+
+.dz-inner {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0;
+}
+
+.drop-hero {
+  position: relative;
+  width: 100%;
+  height: clamp(340px, 62vh, 820px);
+  border: 1px dashed var(--muted-2);
+  border-radius: var(--radius-lg);
+  background: var(--panel);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  transition: border-color $dur-toggle, background-color $dur-toggle;
+  padding: 32px;
+}
+
+.dz-ring {
+  width: 96px;
+  height: 96px;
+  border-radius: var(--radius-lg);
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+  color: var(--muted);
+  transition: border-color $dur-toggle, color $dur-toggle, transform $dur-toggle ease-in-out;
+
+  svg {
+    width: 42px;
+    height: 42px;
+  }
+
+  &.danger {
+    border-color: var(--danger);
+    color: var(--danger);
+  }
+}
+
+.dz-title {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.dz-sub {
+  color: var(--muted);
+  max-width: 380px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+
+  code {
+    @include mono(12px);
+    color: var(--accent);
+  }
+}
+
+.pill-btn.dz-choose {
+  width: auto;
+  min-width: 300px;
+  margin-top: 8px;
+}
+
+.dz-note {
+  @include mono(11px);
+  color: var(--muted-2);
+  margin-top: 4px;
+}
+
+.dz-cta {
+  margin-top: 2px;
+}
+
+.dz-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  max-width: 440px;
+  margin: 12px auto 0;
+}
+
+// demo chips on drop zone
+.dz-demos {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.dz-demos-label {
+  @include mono(10px);
+  @include caps(0.08em);
+  color: var(--muted);
+}
+
+.dz-demos-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn.dz-demo {
+  font-size: 12px;
+  padding: 6px 12px;
+
+  &:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+}
+
+// ---- demo section ----
+.demo-section {
+  margin: 0;
+  width: 100%;
+  text-align: left;
+}
+
+.demo-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.demo-head-title {
+  @include group-label;
+  font-size: 12px;
+}
+
+.demo-head-sub {
+  font-size: 9.5px;
+  @include caps;
+  color: var(--muted);
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.demo-thumb {
+  display: block;
+  aspect-ratio: 736 / 242;
+  position: relative;
+  background: var(--panel-2);
+  background-size: cover;
+  background-position: center;
+
+  &::after {
+    content: "preview";
+    position: absolute;
+    left: 9px;
+    bottom: 7px;
+    @include mono(8.5px);
+    @include caps(0.12em);
+    color: #ffffff33;
+  }
+
+  &.has-img::after {
+    content: none;
+  }
+}
+
+@each $id in d1, d2, d3 {
+  #thumb-#{$id} {
+    background-image: url("/images/thumb-#{$id}.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+.demo-card {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel-2);
+  cursor: pointer;
+  transition: border-color $dur-fast, box-shadow $dur-fast;
+  font-family: inherit;
+
+  &:hover {
+    border-color: var(--accent);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &.add {
+    border-style: dashed;
+    background: transparent;
+
+    .demo-thumb {
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+
+      &::after {
+        content: none;
+      }
+
+      svg {
+        width: 26px;
+        height: 26px;
+      }
+    }
+
+    &:hover {
+      border-color: var(--accent);
+
+      .demo-thumb {
+        color: var(--accent);
+      }
+    }
+  }
+}
+
+.demo-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 12px;
+}
+
+.demo-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.demo-tag {
+  @include mono(9px);
+  @include caps;
+  color: var(--muted);
+}
+
+@include below($bp-mobile) {
+  .demo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dropzone {
+    padding: 16px;
+  }
+
+  .drop-hero {
+    min-height: 220px;
+  }
+}

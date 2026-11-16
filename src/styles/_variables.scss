@@ -1,0 +1,47 @@
+// Sass-side tokens (compile time) — mirrored into CSS custom properties below
+// so runtime-generated markup and inline styles can keep using var(--x).
+$ink: #0e0e11; // page background
+$panel: #141418; // panel / surface
+$panel-2: #1b1b20; // raised surface (inputs, chips, hover fills)
+$panel-3: #222228; // raised surface, hover / pressed tone
+$line: #26262c; // border
+$line-soft: #26262c; // dividers use the same 1px border colour
+$text: #f2f2f4;
+$muted: #8c8c96;
+$muted-2: #5c5c66;
+$accent: #3d7bfa;
+$accent-dim: #2f6ae8;
+$accent-hover: #5a8ffb;
+$danger: #f25757;
+
+$radius-sm: 6px;
+$radius: 10px;
+$radius-lg: 14px;
+
+$shadow-panel: 0 8px 24px rgba(0, 0, 0, 0.35);
+$focus-ring: 0 0 0 2px rgba(255, 255, 255, 0.12);
+
+$dur-fast: 150ms;
+$dur-toggle: 200ms;
+$dur-panel: 240ms;
+
+$mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+$ui: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+$type-colors: (
+  number: #6ba8ff,
+  boolean: #c792ea,
+  string: #7be0ad,
+  color: #ffd166,
+  enum: #f0a868,
+  trigger: #ff6b8b,
+  nested: #8c8c96,
+);
+
+$bp-tablet: 1000px;
+$bp-mobile: 640px;
+
+$accent-glow: rgba(61, 123, 250, 1);
+@function accent-a($a) {
+  @return rgba(61, 123, 250, $a);
+}
