@@ -52,7 +52,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  background: var(--panel-2);
+  background: var(--well);
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   padding: 8px 8px 8px 12px;
@@ -61,7 +61,8 @@
   transition: border-color $dur-fast, background-color $dur-fast, box-shadow $dur-fast;
 
   &:hover {
-    background: var(--panel-3);
+    background: var(--well-hover);
+    border-color: var(--line-hover);
   }
 
   &:focus-visible {
@@ -69,8 +70,8 @@
   }
 
   &.on {
-    border-color: var(--line);
-    background: var(--panel-2);
+    border-color: var(--line-hover);
+    background: var(--well-hover);
 
     .bool-state {
       color: var(--text);
@@ -104,7 +105,7 @@
   .slide {
     position: absolute;
     inset: 0;
-    background: var(--panel-3);
+    background: var(--well);
     border: 1px solid var(--line);
     border-radius: 999px;
     transition: background-color $dur-toggle ease-in-out, border-color $dur-toggle ease-in-out;
@@ -116,7 +117,7 @@
       width: 14px;
       left: 2px;
       top: 2px;
-      background: #fff;
+      background: #f4f5f8;
       border-radius: 50%;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       transition: transform $dur-toggle ease-in-out;
@@ -149,8 +150,9 @@
 
 .trigger-btn {
   width: 100%;
-  background: var(--panel-2);
+  background: var(--well);
   border: 1px solid var(--line);
+  box-shadow: var(--rim);
   color: var(--text);
   border-radius: var(--radius-sm);
   padding: 8px;
@@ -163,8 +165,9 @@
   transition: border-color $dur-fast, background-color $dur-fast, color $dur-fast, box-shadow $dur-fast;
 
   &:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+    border-color: #ffa58266;
+    color: var(--accent-warm);
+    background: #ffa58214;
   }
 
   &:focus-visible {
@@ -178,7 +181,7 @@
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent);
+    box-shadow: 0 0 0 0 #ffa58299;
   }
   100% {
     box-shadow: 0 0 0 10px transparent;

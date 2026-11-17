@@ -1,33 +1,84 @@
 @use "variables" as *;
 @use "mixins" as *;
 
+// Three floating cards: Input (left) · Stage (center) · Controls (right).
 .workspace {
   flex: 1;
-  display: grid;
+  display: flex;
+  gap: 16px;
   min-height: 0;
-  grid-template-columns: 250px 1fr 320px;
+  margin: 16px clamp(18px, 3vw, 36px) 20px;
 }
 
-.col {
+.card {
   display: flex;
   flex-direction: column;
   min-height: 0;
   min-width: 0;
+  border: 1px solid var(--line);
+  background: var(--glass);
+  border-radius: $radius-card;
+  overflow: hidden;
 
-  &.left {
-    border-right: 1px solid var(--line);
-    background: var(--panel);
+  &.side {
+    flex: 0 0 300px;
   }
 
-  &.right {
-    border-left: 1px solid var(--line);
-    background: var(--panel);
+  &.stage-card {
+    flex: 1;
+    background: var(--panel-2);
+    border-radius: $radius-stage;
   }
+}
 
-  &.center {
-    background: var(--ink);
-    position: relative;
-  }
+// card header strip — same height across all three cards so the dividers line up
+.card-head {
+  height: var(--head-h);
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.panel-label {
+  @include group-label;
+  font-size: 12px;
+}
+
+.stage-head {
+  background: var(--glass);
+  gap: 20px;
+}
+
+.stage-title {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  min-width: 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.stage-file {
+  @include mono(11px);
+  font-style: normal;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stage-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
 }
 
 .scroll {
@@ -41,7 +92,11 @@
 
 .section {
   border-bottom: 1px solid var(--line-soft);
-  padding: 12px 16px 16px;
+  padding: 16px;
+
+  &:last-child {
+    border-bottom: 0;
+  }
 
   h2 {
     margin: 0 0 12px;
@@ -54,9 +109,9 @@
       margin-left: auto;
       color: var(--muted);
       font-weight: 500;
-      background: none;
       border: 1px solid var(--line);
-      border-radius: 999px;
+      background: var(--well);
+      border-radius: var(--radius-pill);
       padding: 0 8px;
       font-size: 10px;
       letter-spacing: 0.04em;
@@ -65,22 +120,28 @@
 }
 
 @include below($bp-tablet) {
-  .workspace {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto minmax(280px, 1fr) auto;
+  body {
     overflow-y: auto;
   }
 
-  .col {
-    &.left,
-    &.right {
-      border: 0;
-      border-bottom: 1px solid var(--line);
+  .workspace {
+    flex-direction: column;
+    flex: 0 0 auto;
+  }
+
+  .card {
+    &.side {
+      flex: 0 0 auto;
     }
 
-    &.center {
-      min-height: 320px;
+    &.stage-card {
+      flex: 0 0 auto;
+      min-height: 520px;
     }
+  }
+
+  .stage-file {
+    display: none;
   }
 
   .scroll {

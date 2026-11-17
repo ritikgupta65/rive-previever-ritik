@@ -12,16 +12,36 @@
 
 @mixin focus-ring {
   outline: none;
-  border-color: var(--accent);
+  border-color: var(--line-hover);
   box-shadow: var(--focus-ring);
+}
+
+// primary CTA: solid pop blue, white label
+@mixin primary-fill {
+  background: var(--accent);
+  color: #fff;
+  border-color: transparent;
+  font-weight: 600;
+
+  &:hover:not(:disabled) {
+    background: var(--accent-hover);
+  }
+}
+
+// frosted glass surface (floating chips / toolbars)
+@mixin glass {
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--line);
 }
 
 // section / group label: small, uppercase, muted, semibold
 @mixin group-label {
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
   color: var(--muted);
 }
 
@@ -36,7 +56,7 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background: var(--line);
+    background: var(--line-hover);
     border-radius: 6px;
 
     &:hover {

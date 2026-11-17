@@ -8,7 +8,7 @@ import LeftPanel from "./panels/LeftPanel";
 import RightPanel from "./panels/RightPanel";
 import { PreviewerContext } from "./PreviewerContext";
 import Splash from "./Splash";
-import Stage from "./Stage";
+import Stage, { StageHead } from "./Stage";
 
 export default function Previewer() {
   const [controller] = useState(() => new PreviewerController());
@@ -37,10 +37,11 @@ export default function Previewer() {
       <Header logoRef={logoRef} fileInputRef={fileInputRef} />
       <div className="workspace">
         <LeftPanel />
-        <div className="col center">
+        <main className="card stage-card">
+          <StageHead />
           <Stage stageRef={stageRef} canvasRef={canvasRef} />
           <EventConsole />
-        </div>
+        </main>
         <RightPanel />
       </div>
     </PreviewerContext.Provider>

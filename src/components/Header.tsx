@@ -1,37 +1,20 @@
 "use client";
 
-import { useController, usePreviewerState } from "./PreviewerContext";
+import { useController } from "./PreviewerContext";
 
 interface HeaderProps {
   logoRef: React.Ref<HTMLImageElement>;
   fileInputRef: React.Ref<HTMLInputElement>;
 }
 
+/** Top bar: only the pop logo, centered. The file picker input lives here so every "Open" button can reach it. */
 export default function Header({ logoRef, fileInputRef }: HeaderProps) {
   const c = useController();
-  const runtime = usePreviewerState((s) => s.runtime);
-  const dotCls = "dot" + (runtime.status === "live" ? " live" : runtime.status === "err" ? " err" : "");
 
   return (
     <header>
-      <div className="brand">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="glyph-img" ref={logoRef} src="/images/logo.png" alt="" />
-        <div>
-          <h1>POPcorn</h1>
-        </div>
-      </div>
-      <div className="spacer" />
-      <div className="runtime-badge">
-        <span className={dotCls} id="rtDot" />
-        <span id="rtLabel">{runtime.label}</span>
-      </div>
-      <button className="pill-btn dark sm" id="reportBtn" title="Copy a text report of every interaction point" onClick={c.copyReport}>
-        <span className="pill-label">Copy report</span>
-      </button>
-      <button className="pill-btn orange sm" id="openBtn" onClick={c.pick}>
-        <span className="pill-label">Open .riv</span>
-      </button>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img className="pop-logo" ref={logoRef} src="/images/pop.svg" alt="pop" />
       <input
         type="file"
         id="fileInput"

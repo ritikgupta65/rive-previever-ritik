@@ -1,19 +1,22 @@
 @use "variables" as *;
 @use "mixins" as *;
 
-// secondary button (default)
+// secondary button (default) — "ghost" well with a top rim highlight
 .btn {
   border: 1px solid var(--line);
-  background: var(--panel-2);
+  background: var(--well);
   color: var(--text);
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   padding: 8px 12px;
   font-size: 12.5px;
   font-weight: 500;
-  transition: border-color $dur-fast, background-color $dur-fast, color $dur-fast, box-shadow $dur-fast;
+  box-shadow: var(--rim);
+  transition: border-color $dur-fast, background-color $dur-fast, color $dur-fast, box-shadow $dur-fast,
+    transform $dur-fast, opacity $dur-fast;
 
   &:hover {
-    background: var(--panel-3);
+    background: var(--well-hover);
+    border-color: var(--line-hover);
   }
 
   &:focus-visible {
@@ -26,14 +29,7 @@
   }
 
   &.primary {
-    background: var(--accent);
-    color: #fff;
-    border-color: transparent;
-    font-weight: 600;
-
-    &:hover {
-      background: var(--accent-hover);
-    }
+    @include primary-fill;
   }
 }
 
@@ -41,15 +37,16 @@
 .mini-btn {
   background: none;
   border: 1px solid transparent;
-  border-radius: var(--radius-sm);
-  padding: 4px 8px;
+  border-radius: var(--radius-pill);
+  padding: 4px 10px;
   font-size: 11px;
   color: var(--muted);
-  transition: background-color $dur-fast, color $dur-fast, box-shadow $dur-fast;
+  transition: background-color $dur-fast, color $dur-fast, box-shadow $dur-fast, border-color $dur-fast;
 
   &:hover {
     color: var(--text);
-    background: var(--panel-2);
+    background: var(--well);
+    border-color: var(--line);
   }
 
   &:focus-visible {
@@ -57,25 +54,26 @@
   }
 }
 
-// ---- pill buttons (class names kept; restyled as flat primary / secondary) ----
+// ---- pill buttons (class names kept; primary = premium gradient, secondary = glass well) ----
 .pill-btn {
   position: relative;
   border: 1px solid transparent;
   cursor: pointer;
-  color: #fff;
+  color: var(--text);
   font-family: inherit;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0;
   padding: 12px 24px;
-  border-radius: var(--radius);
+  border-radius: var(--radius-pill);
   width: 100%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   overflow: hidden;
-  transition: background-color $dur-fast, border-color $dur-fast, color $dur-fast, box-shadow $dur-fast;
+  transition: background-color $dur-fast, border-color $dur-fast, color $dur-fast, box-shadow $dur-fast,
+    transform $dur-fast, opacity $dur-fast;
 
   .pill-label {
     position: relative;
@@ -92,22 +90,20 @@
 
   // primary
   &.orange {
-    background: var(--accent);
-
-    &:hover {
-      background: var(--accent-hover);
-    }
+    @include primary-fill;
   }
 
   // secondary
   &.metal,
   &.dark {
-    background: var(--panel-2);
+    background: var(--well);
     border-color: var(--line);
     color: var(--text);
+    box-shadow: var(--rim);
 
     &:hover {
-      background: var(--panel-3);
+      background: var(--well-hover);
+      border-color: var(--line-hover);
     }
   }
 
@@ -115,7 +111,6 @@
     font-size: 12.5px;
     font-weight: 600;
     padding: 8px 16px;
-    border-radius: var(--radius);
     width: auto;
   }
 }

@@ -34,7 +34,7 @@
 .splash-bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(120% 90% at 50% 30%, #141418, #0e0e11 70%);
+  background: var(--aurora-strong), radial-gradient(120% 90% at 50% 30%, #141414, #060606 70%);
   transition: opacity 0.55s ease;
 }
 
@@ -77,9 +77,14 @@
 }
 
 .splash-word {
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-family: var(--heading);
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  background: var(--accent-gradient-premium);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-top: 2px;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }

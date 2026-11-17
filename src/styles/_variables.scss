@@ -1,47 +1,72 @@
 // Sass-side tokens (compile time) — mirrored into CSS custom properties below
 // so runtime-generated markup and inline styles can keep using var(--x).
-$ink: #0e0e11; // page background
-$panel: #141418; // panel / surface
-$panel-2: #1b1b20; // raised surface (inputs, chips, hover fills)
-$panel-3: #222228; // raised surface, hover / pressed tone
-$line: #26262c; // border
-$line-soft: #26262c; // dividers use the same 1px border colour
-$text: #f2f2f4;
-$muted: #8c8c96;
-$muted-2: #5c5c66;
-$accent: #3d7bfa;
-$accent-dim: #2f6ae8;
-$accent-hover: #5a8ffb;
-$danger: #f25757;
+// Palette follows popcorn.design (AI Cataloging tool page).
+$ink: #07070a; // page background
+$panel: #111114db; // panel / surface
+$panel-2: #141417; // raised surface (inputs, chips, hover fills)
+$panel-3: #1c1c20; // raised surface, hover / pressed tone
+$line: #ffffff17; // border (soft)
+$line-soft: #ffffff0d; // dividers
+$line-hover: #ffffff29;
+$text: #e9e9ee;
+$muted: #86858f;
+$muted-2: #5f5e68;
+$accent: #3d6fe0; // pop blue
+$accent-dim: #2f5bc4;
+$accent-hover: #4f7ff0;
+$accent-warm: #ffa582;
+$accent-cool: #a2b7f5;
+$danger: #ff7676;
+$good: #86e3b5;
 
-$radius-sm: 6px;
+$accent-gradient: linear-gradient(150deg, #e8eaef 0%, #bcc0ca 52%, #e8eaef 100%);
+$accent-gradient-premium: linear-gradient(90deg, #bcc0ca -1.05%, #feeae1 41.74%, #c0cef2 102.46%);
+$aurora: radial-gradient(120% 90% at 0% 0%, #feeae10b, transparent 55%),
+  radial-gradient(120% 90% at 100% 100%, #c0cef20a, transparent 60%);
+$aurora-strong: radial-gradient(120% 90% at 0% 0%, #feeae111, transparent 55%),
+  radial-gradient(120% 90% at 100% 100%, #c0cef20f, transparent 60%);
+$sheen: linear-gradient(180deg, #ffffff09 0%, #fff0 45%);
+$rim: inset 0 1px 0 0 #ffffff0f;
+$well: #ffffff0d;
+$well-hover: #ffffff13;
+$glass: #111114db;
+$glass-blur: blur(26px) saturate(1.35);
+
+$radius-sm: 8px;
 $radius: 10px;
-$radius-lg: 14px;
+$radius-lg: 18px;
+$radius-pill: 999px;
+$radius-card: 18px;
+$radius-stage: 22px;
+$head-h: 68px;
 
-$shadow-panel: 0 8px 24px rgba(0, 0, 0, 0.35);
-$focus-ring: 0 0 0 2px rgba(255, 255, 255, 0.12);
+$shadow-panel: 0 4px 32px rgba(0, 0, 0, 0.5);
+$shadow-floating: 0 8px 48px rgba(0, 0, 0, 0.6);
+$focus-ring: 0 0 0 2px #3d6fe080;
 
 $dur-fast: 150ms;
 $dur-toggle: 200ms;
 $dur-panel: 240ms;
 
-$mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-$ui: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+$mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+$ui: "Figtree", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+$heading: "Figtree", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+$serif: "Awesome Serif Italic", "Instrument Serif", Georgia, serif;
 
 $type-colors: (
-  number: #6ba8ff,
-  boolean: #c792ea,
-  string: #7be0ad,
-  color: #ffd166,
-  enum: #f0a868,
-  trigger: #ff6b8b,
-  nested: #8c8c96,
+  number: #a2b7f5,
+  boolean: #d4d9e4,
+  string: #86e3b5,
+  color: #f4c983,
+  enum: #ffbea2,
+  trigger: #ff9d8c,
+  nested: #868686,
 );
 
 $bp-tablet: 1000px;
 $bp-mobile: 640px;
 
-$accent-glow: rgba(61, 123, 250, 1);
+$accent-glow: rgba(150, 170, 180, 0.42);
 @function accent-a($a) {
-  @return rgba(61, 123, 250, $a);
+  @return rgba(61, 111, 224, $a);
 }

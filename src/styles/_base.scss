@@ -25,6 +25,25 @@
   --focus-ring: #{$focus-ring};
   --mono: #{$mono};
   --ui: #{$ui};
+  --heading: #{$heading};
+  --serif: #{$serif};
+  --head-h: #{$head-h};
+  --line-hover: #{$line-hover};
+  --accent-warm: #{$accent-warm};
+  --accent-cool: #{$accent-cool};
+  --good: #{$good};
+  --accent-gradient: #{$accent-gradient};
+  --accent-gradient-premium: #{$accent-gradient-premium};
+  --aurora: #{$aurora};
+  --aurora-strong: #{$aurora-strong};
+  --sheen: #{$sheen};
+  --rim: #{$rim};
+  --well: #{$well};
+  --well-hover: #{$well-hover};
+  --glass: #{$glass};
+  --glass-blur: #{$glass-blur};
+  --radius-pill: #{$radius-pill};
+  --shadow-floating: #{$shadow-floating};
 }
 
 * {
@@ -44,6 +63,7 @@ body {
   font-size: 13.5px;
   line-height: 1.45;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -58,7 +78,15 @@ button {
 // thin scrollbars everywhere (Firefox); WebKit rules live with each scroller
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--line) transparent;
+  scrollbar-color: var(--line-hover) transparent;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--heading);
+  letter-spacing: -0.025em;
 }
 
 ::selection {
