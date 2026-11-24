@@ -6,8 +6,8 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 16px clamp(18px, 3vw, 36px);
-  border-bottom: 1px solid var(--line);
+  padding: 35px clamp(8px, 3vw, 36px);
+  // border-bottom: 1px solid var(--line);
   position: relative;
   z-index: 10;
   flex: 0 0 auto;

@@ -14,7 +14,7 @@ export default function Header({ logoRef, fileInputRef }: HeaderProps) {
   return (
     <header>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="pop-logo" ref={logoRef} src="/images/pop.svg" alt="pop" />
+      {/* <img className="pop-logo" ref={logoRef} src="/images/pop.svg" alt="pop" /> */}
       <input
         type="file"
         id="fileInput"
